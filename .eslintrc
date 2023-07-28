@@ -1,6 +1,11 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
+  "ignorePatterns": [
+    "**/logs/**",
+    "**/node_modules/",
+    "**/dist/"
+  ],
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "airbnb-typescript/base"
@@ -9,8 +14,8 @@
     "import"
   ],
   "parserOptions": {
-    "ecmaVersion": 2018,
     "project": "./tsconfig.json",
+    "ecmaVersion": 2018,
     "sourceType": "module"
   },
   "rules": {

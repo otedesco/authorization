@@ -1,37 +1,23 @@
-FROM node:18.16.1-alpine3.17 AS build-enviroment
-RUN apk add --no-cache libc6-compat
-RUN apk update
-ENV PNPM_HOME="/root/.local/share/pnpm"
-ENV PATH="${PATH}:${PNPM_HOME}"
-RUN npm install --global pnpm
-RUN pnpm i -g turbo
-
-FROM build-enviroment AS turbo-output
+# Common build stage
+FROM node:18.17.0-alpine as installer
+ARG NPM_TOKEN
 WORKDIR /app
-COPY . .
-RUN turbo prune --scope=auth --docker
+COPY package.json package-lock.json .npmrc ./
+RUN npm install
+RUN rm .npmrc
 
-FROM build-enviroment as builder
+FROM installer as builder
 WORKDIR /app
-COPY --from=turbo-output /app/out/json/ .
-COPY --from=turbo-output /app/out/full/ .
-COPY --from=turbo-output /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY turbo.json turbo.json
-RUN pnpm install --ignore-scripts
-RUN pnpm run build --filter auth
-RUN pnpm run clean
+COPY .swcrc knexfile.ts ./
+COPY ./src  ./src
+RUN npm run build
+RUN npm prune --production
 
-FROM build-enviroment as prod-installer
+FROM gcr.io/distroless/nodejs18-debian11 as prod-server
 WORKDIR /app
-COPY --from=builder /app .
-RUN pnpm install --filter auth --ignore-scripts --prod
+COPY --from=builder app/package.json .
+COPY --from=builder app/package-lock.json .
+COPY --from=builder app/dist ./dist
+COPY --from=builder app/node_modules ./node_modules
 
-FROM build-enviroment as migration
-WORKDIR /app
-COPY --from=builder /app .
-CMD pnpm run migrate
-
-FROM node:18.16.1-alpine3.17 as prod-server
-WORKDIR /app
-COPY --from=prod-installer /app .
-CMD node services/auth/dist/index.js
+CMD ["dist/index.js"]

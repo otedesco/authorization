@@ -1,5 +1,6 @@
 import { LoggerFactory } from '@otedesco/server-utils';
-import app from 'app';
+
+import app from './app';
 
 const { logger } = LoggerFactory.getInstance(__filename);
 

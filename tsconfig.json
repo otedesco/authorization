@@ -1,12 +1,18 @@
 {
+  "compileOnSave": false,
   "include": [
-    "./"
+    "src/**/*.ts",
+    "src/**/*.json",
+    ".env",
+    "jest.config.js",
+    "knexfile.ts",
+    "ecosystem.config.js"
   ],
   "exclude": [
     "node_modules",
-    ".env",
-    "dist",
-    ".turbo"
+    "src/http",
+    "src/logs",
+    "src/tests"
   ],
   "compilerOptions": {
     "baseUrl": "src",
@@ -60,6 +66,6 @@
     "noEmit": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "importHelpers": true
+    "importHelpers": true,
   }
 }

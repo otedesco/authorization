@@ -18,7 +18,33 @@
       "compress": false,
       "mangle": false
     },
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+      "@configs/*": [
+        "configs/*"
+      ],
+      "@database/*": [
+        "database/*"
+      ],
+      "@enums/*": [
+        "enums/*"
+      ],
+      "@exceptions/*": [
+        "exceptions/*"
+      ],
+      "@handlers/*": [
+        "handlers/*"
+      ],
+      "@middlewares/*": [
+        "middlewares/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ]
+    }
   },
   "module": {
     "type": "commonjs"

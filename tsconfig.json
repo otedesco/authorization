@@ -5,8 +5,7 @@
     "src/**/*.json",
     ".env",
     "jest.config.js",
-    "knexfile.ts",
-    "ecosystem.config.js"
+    "knexfile.ts"
   ],
   "exclude": [
     "node_modules",
@@ -40,7 +39,7 @@
       ],
       "@utils/*": [
         "utils/*"
-      ],
+      ]
     },
     "target": "es2017",
     "lib": [
@@ -66,6 +65,6 @@
     "noEmit": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "importHelpers": true,
+    "importHelpers": true
   }
 }

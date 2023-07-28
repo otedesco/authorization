@@ -1,9 +1,5 @@
 {
   "**/*.{js,jsx,ts,tsx}": [
-    "pnpm run lint",
-    "prettier --write"
-  ],
-  "**/*.json": [
-    "prettier --write"
+    "npm run lint:fix"
   ]
 }

@@ -19,7 +19,7 @@ function getAccessToken({ headers, cookies }: Request): string | null {
   return null;
 }
 
-function getRefreshTken({ cookies }: Request): string | null {
+function getRefreshToken({ cookies }: Request): string | null {
   const refreshToken = _.get(cookies, 'refresh_token');
   
   return refreshToken;
@@ -28,7 +28,7 @@ function getRefreshTken({ cookies }: Request): string | null {
 export async function deserializeAccount(req: Request, res: Response, next: NextFunction) {
   logger.info(`Account deserialization attempt ${new Date()} `);
   const accessToken = getAccessToken(req);
-  const refreshToken = getRefreshTken(req);
+  const refreshToken = getRefreshToken(req);
   if (!accessToken && !refreshToken) return next(new UnauthorizedException());
 
   const publicKey = accessToken ? PUBLIC_KEY : refreshToken ? REFRESH_PUBLIC_KEY : null;
@@ -39,7 +39,7 @@ export async function deserializeAccount(req: Request, res: Response, next: Next
 
   const account = AccountService.verifyAccount(data);
 
-  logger.info(`Account deserialization successs: ${JSON.stringify(data)} `);
+  logger.info(`Account deserialization success: ${JSON.stringify(data)} `);
 
   res.locals.account = account;
   

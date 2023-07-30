@@ -2,7 +2,12 @@ import { LoggerFactory } from "@otedesco/server-utils";
 import Knex from "knex";
 import { knexSnakeCaseMappers } from "objection";
 
-import { DEBUG, CONNECTION_POOL_SIZE, CONNECTION, CONNECTION_KEEP_ALIVE_TIMEOUT } from "../configs/DBConfig";
+import {
+  DEBUG,
+  CONNECTION_POOL_SIZE,
+  CONNECTION,
+  CONNECTION_KEEP_ALIVE_TIMEOUT,
+} from "../configs/DBConfig";
 
 const { logger } = LoggerFactory.getInstance(__dirname);
 

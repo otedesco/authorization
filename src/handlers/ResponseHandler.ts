@@ -1,7 +1,10 @@
 import { BaseException, ResourceNotFoundError } from "@otedesco/commons";
 import _ from "lodash";
 
-const buildResponse = <T>(status: number, data: T): { status: number; data: T } => ({ status, data });
+const buildResponse = <T>(
+  status: number,
+  data: T,
+): { status: number; data: T } => ({ status, data });
 
 export const success = (data: any) => buildResponse(200, data);
 
@@ -28,7 +31,10 @@ export const resolveResponse = async (
   return success(defaultResponse ?? records);
 };
 
-export const createResponse = async <T>(value: Promise<T>, options: { defaultResponse?: any } = {}) => {
+export const createResponse = async <T>(
+  value: Promise<T>,
+  options: { defaultResponse?: any } = {},
+) => {
   const { defaultResponse = { data: null } } = options;
   const records = await value;
 

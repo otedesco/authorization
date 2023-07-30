@@ -114,18 +114,18 @@ module.exports = {
   branches: [
     // release channels
     "main",
-    "next",
-    "next-major",
+    // "next",
+    // "next-major",
 
-    // pre-releases
-    {
-      name: "stage",
-      prerelease: true,
-    },
-    {
-      name: "develop",
-      prerelease: true,
-    },
+    // // pre-releases
+    // {
+    //   name: "stage",
+    //   prerelease: true,
+    // },
+    // {
+    //   name: "develop",
+    //   prerelease: true,
+    // },
   ],
   plugins,
 };

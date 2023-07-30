@@ -5,16 +5,23 @@ config({ path: `.env.${process.env.NODE_ENV || "development"}.local` });
 
 const environment = process.env;
 
-export const KAFKA_HOST_MICROSERVICES = environment.KAFKA_HOST_MICROSERVICES || "localhost:9092";
+export const KAFKA_HOST_MICROSERVICES =
+  environment.KAFKA_HOST_MICROSERVICES || "localhost:9092";
 export const PRODUCE_EVENTS = environment.KAFKA_PRODUCE_EVENTS === "true";
 export const CONSUME_EVENTS = environment.KAFKA_CONSUME_EVENTS === "true";
-export const KAFKA_COMPRESSION_CODEC = environment.KAFKA_COMPRESSION_CODEC || "gzip";
-export const KAFKA_RETRY_BACKOFF_MS = Number(environment.KAFKA_RETRY_BACKOFF_MS) || 200;
-export const KAFKA_SEND_MAX_RETRIES = Number(environment.KAFKA_SEND_MAX_RETRIES) || 10;
+export const KAFKA_COMPRESSION_CODEC =
+  environment.KAFKA_COMPRESSION_CODEC || "gzip";
+export const KAFKA_RETRY_BACKOFF_MS =
+  Number(environment.KAFKA_RETRY_BACKOFF_MS) || 200;
+export const KAFKA_SEND_MAX_RETRIES =
+  Number(environment.KAFKA_SEND_MAX_RETRIES) || 10;
 export const KAFKA_SOCKET_KEEP_ALIVE = environment.KAFKA_SOCKET_KEEP_ALIVE;
-export const KAFKA_BUFFERING_MAX_MESSAGES = Number(environment.KAFKA_BUFFERING_MAX_MESSAGES) || 100000;
-export const KAFKA_BUFFERING_MAX_MS = Number(environment.KAFKA_BUFFERING_MAX_MS) || 1000;
-export const KAFKA_ENABLE_DELIVERY_REPORT = environment.KAFKA_ENABLE_DELIVERY_REPORT;
+export const KAFKA_BUFFERING_MAX_MESSAGES =
+  Number(environment.KAFKA_BUFFERING_MAX_MESSAGES) || 100000;
+export const KAFKA_BUFFERING_MAX_MS =
+  Number(environment.KAFKA_BUFFERING_MAX_MS) || 1000;
+export const KAFKA_ENABLE_DELIVERY_REPORT =
+  environment.KAFKA_ENABLE_DELIVERY_REPORT;
 
 const clientConfig = {
   "metadata.broker.list": KAFKA_HOST_MICROSERVICES,
@@ -33,7 +40,8 @@ const DELETED = "deleted";
 
 // PRODUCER CONFIGS
 export const TOPIC_PREFIX = environment.KAFKA_TOPIC_PREFIX || `apart-${PREFIX}`;
-export const PRODUCER_POLL_INTERVAL = Number(environment.PRODUCER_POLL_INTERVAL) || 100;
+export const PRODUCER_POLL_INTERVAL =
+  Number(environment.PRODUCER_POLL_INTERVAL) || 100;
 
 export const producerConfig = {
   enabled: PRODUCE_EVENTS,

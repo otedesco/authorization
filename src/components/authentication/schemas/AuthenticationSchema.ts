@@ -8,7 +8,10 @@ export const signUpSchema = {
   properties: {
     email: { type: "string", format: "email" },
     password: { type: "string", format: "password" },
-    externalAuthType: { type: "string", enum: Object.values(ExternalAuthTypeEnum) },
+    externalAuthType: {
+      type: "string",
+      enum: Object.values(ExternalAuthTypeEnum),
+    },
     externalId: { type: "string" },
     passwordConfirmation: {
       type: "string",

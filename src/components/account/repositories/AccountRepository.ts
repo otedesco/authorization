@@ -3,7 +3,10 @@ import { QueryBuilder, Transaction } from "objection";
 import { Account } from "../interfaces/Account";
 import { Accounts } from "../models/AccountModel";
 
-const filterQuery = (query: QueryBuilder<Accounts, Accounts[]>, filter: Partial<Account>) => {
+const filterQuery = (
+  query: QueryBuilder<Accounts, Accounts[]>,
+  filter: Partial<Account>,
+) => {
   const { id, email } = filter;
 
   if (email) query.where(`${Accounts.tableName}.email`, "=", email);

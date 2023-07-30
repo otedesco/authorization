@@ -4,7 +4,11 @@ import { ORGANIZATION_TABLE, PROFILE_TABLE } from "../../configs/DBConfig";
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable(ORGANIZATION_TABLE, (table) => {
-    table.specificType("id", "uuid").notNullable().defaultTo(knex.raw("uuid_generate_v4()")).unique();
+    table
+      .specificType("id", "uuid")
+      .notNullable()
+      .defaultTo(knex.raw("uuid_generate_v4()"))
+      .unique();
     table.string("name", 45).notNullable();
 
     table.timestamps(true, true);
@@ -13,7 +17,11 @@ export async function up(knex: Knex): Promise<void> {
   });
 
   await knex.schema.alterTable(PROFILE_TABLE, (table) => {
-    table.uuid("organization").references("id").inTable(ORGANIZATION_TABLE).defaultTo(null);
+    table
+      .uuid("organization")
+      .references("id")
+      .inTable(ORGANIZATION_TABLE)
+      .defaultTo(null);
   });
 }
 

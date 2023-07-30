@@ -31,6 +31,9 @@ export class AuthenticationRoute implements Route {
       asyncHandler(AuthenticationController.signIn),
     );
 
-    this.router.post(`${this.path}/refresh-token`, asyncHandler(AuthenticationController.refreshAuthorization));
+    this.router.post(
+      `${this.path}/refresh-token`,
+      asyncHandler(AuthenticationController.refreshAuthorization),
+    );
   }
 }

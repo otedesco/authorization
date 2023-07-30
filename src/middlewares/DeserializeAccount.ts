@@ -11,7 +11,8 @@ const { logger } = LoggerFactory.getInstance(__filename);
 
 function getAccessToken({ headers, cookies }: Request): string | null {
   const authorizationHeader = _.get(headers, "Authorization", null) as string;
-  if (authorizationHeader && authorizationHeader.startsWith("Bearer")) return authorizationHeader.split(" ")[1];
+  if (authorizationHeader && authorizationHeader.startsWith("Bearer"))
+    return authorizationHeader.split(" ")[1];
 
   const authorizationCookie = _.get(cookies, "access_token", null);
   if (authorizationCookie) return authorizationCookie;
@@ -25,13 +26,21 @@ function getRefreshToken({ cookies }: Request): string | null {
   return refreshToken;
 }
 
-export async function deserializeAccount(req: Request, res: Response, next: NextFunction) {
+export async function deserializeAccount(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   logger.info(`Account deserialization attempt ${new Date()} `);
   const accessToken = getAccessToken(req);
   const refreshToken = getRefreshToken(req);
   if (!accessToken && !refreshToken) return next(new UnauthorizedException());
 
-  const publicKey = accessToken ? PUBLIC_KEY : refreshToken ? REFRESH_PUBLIC_KEY : null;
+  const publicKey = accessToken
+    ? PUBLIC_KEY
+    : refreshToken
+    ? REFRESH_PUBLIC_KEY
+    : null;
   if (!publicKey) return next(new UnauthorizedException());
 
   const data = verify(accessToken || refreshToken, publicKey);

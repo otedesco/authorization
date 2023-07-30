@@ -1,9 +1,16 @@
-import { AuthenticationRoute, PrivateAuthenticationRoute } from "@components/authentication/routes";
+import {
+  AuthenticationRoute,
+  PrivateAuthenticationRoute,
+} from "@components/authentication/routes";
 import { CACHE_HOST, CACHE_PORT } from "@configs/CacheConfig";
 import knex, { testDBConnection } from "@database/index";
 import { handleError, logError } from "@middlewares/index";
 import { Cache } from "@otedesco/cache";
-import { AppFactory, ConfigOptions, LoggerFactory } from "@otedesco/server-utils";
+import {
+  AppFactory,
+  ConfigOptions,
+  LoggerFactory,
+} from "@otedesco/server-utils";
 import validateEnv from "@utils/validateEnv";
 import { Model } from "objection";
 
@@ -22,7 +29,10 @@ class AuthServer extends AppFactory {
     Model.knex(knex);
     await testDBConnection().catch(logger.error);
     logger.info("Initializing cache connection");
-    await Cache.init({ socket: { host: CACHE_HOST, port: CACHE_PORT }, logger }).catch(logger.error);
+    await Cache.init({
+      socket: { host: CACHE_HOST, port: CACHE_PORT },
+      logger,
+    }).catch(logger.error);
   }
 
   initializeErrorHandling(): void {

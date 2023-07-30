@@ -10,7 +10,11 @@ export class InternalServerException extends Error implements CustomError {
   public data: Object | null;
 
   constructor(properties?: { status: 500; code: string; data: Object }) {
-    const { status = 500, code = InternalServerError.code, data = null } = properties ?? {};
+    const {
+      status = 500,
+      code = InternalServerError.code,
+      data = null,
+    } = properties ?? {};
     super(InternalServerError.code);
     this.status = status;
     this.code = code;

@@ -10,7 +10,11 @@ export class UnauthorizedException extends Error implements CustomError {
   public data: Object | null;
 
   constructor(properties?: { status: 401; code: string; data: Object }) {
-    const { status = 401, code = UnauthorizedError.code, data = null } = properties || {};
+    const {
+      status = 401,
+      code = UnauthorizedError.code,
+      data = null,
+    } = properties || {};
     super(UnauthorizedError.code);
     this.status = status;
     this.code = code;

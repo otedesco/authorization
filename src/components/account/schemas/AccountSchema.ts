@@ -12,7 +12,13 @@ const properties = {
     enum: [ExternalAuthTypeEnum.GOOGLE, ExternalAuthTypeEnum.FACEBOOK],
   },
   externalId: { type: "string", nullable: true },
-  status: { type: "string", enum: [AccountStatusEnum.EMAIL_VERIFICATION_PENDING, AccountStatusEnum.VERIFIED] },
+  status: {
+    type: "string",
+    enum: [
+      AccountStatusEnum.EMAIL_VERIFICATION_PENDING,
+      AccountStatusEnum.VERIFIED,
+    ],
+  },
 };
 
 export const modelSchema = {

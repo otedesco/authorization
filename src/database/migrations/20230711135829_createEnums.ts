@@ -43,7 +43,10 @@ export async function up(knex: Knex): Promise<void> {
 
     table.timestamps(true, true);
   });
-  await knex(PROFILE_TYPE_TABLE).insert([{ type: ProfileTypeEnum.INDIVIDUAL }, { type: ProfileTypeEnum.COLLABORATOR }]);
+  await knex(PROFILE_TYPE_TABLE).insert([
+    { type: ProfileTypeEnum.INDIVIDUAL },
+    { type: ProfileTypeEnum.COLLABORATOR },
+  ]);
 
   await knex.schema.createTable(ROLE_TYPE_TABLE, (table) => {
     table.specificType("id", "serial").notNullable();

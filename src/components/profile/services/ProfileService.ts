@@ -6,7 +6,14 @@ import { Transaction } from "objection";
 import { Profile } from "../interfaces/Profile";
 import ProfileRepository from "../repositories/ProfileRepository";
 
-function mapProfile({ account, name, lastName, avatarUrl, role, type }: Partial<Profile>): Profile {
+function mapProfile({
+  account,
+  name,
+  lastName,
+  avatarUrl,
+  role,
+  type,
+}: Partial<Profile>): Profile {
   if (!account) throw new InternalServerException();
 
   return {
@@ -19,7 +26,10 @@ function mapProfile({ account, name, lastName, avatarUrl, role, type }: Partial<
   };
 }
 
-async function create(profile: Partial<Profile>, tx?: Transaction): Promise<Profile> {
+async function create(
+  profile: Partial<Profile>,
+  tx?: Transaction,
+): Promise<Profile> {
   return ProfileRepository.create(mapProfile(profile), tx);
 }
 

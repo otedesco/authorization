@@ -19,7 +19,10 @@ const createFromDataPath = (error: any) => {
 
 // FIXME: Explicit any
 const createFromKeyword = ({ params, message }: any) => {
-  const messageWithKey = Object.values(params).reduce((msg, value) => `${msg}${value}: ${message};`, "");
+  const messageWithKey = Object.values(params).reduce(
+    (msg, value) => `${msg}${value}: ${message};`,
+    "",
+  );
 
   return { message: messageWithKey, data: {} };
 };
@@ -28,7 +31,10 @@ const mapErrors = (errors: any[], code: string) =>
   errors.reduce((arrayResult, error) => {
     const { instancePath } = error;
 
-    const errorObj = !instancePath || instancePath === "" ? createFromKeyword(error) : createFromDataPath(error);
+    const errorObj =
+      !instancePath || instancePath === ""
+        ? createFromKeyword(error)
+        : createFromDataPath(error);
 
     return [...arrayResult, { code, ...errorObj }];
   }, []);
@@ -43,7 +49,11 @@ export class ValidationException extends Error implements CustomError {
   public validationErrors: any[];
 
   constructor(properties: { status?: 400; code?: string; errors?: any[] }) {
-    const { status = 400, code = ValidationError.code, errors = [] } = properties;
+    const {
+      status = 400,
+      code = ValidationError.code,
+      errors = [],
+    } = properties;
     super(ValidationError.code);
     this.status = status;
     this.code = code;
@@ -52,6 +62,8 @@ export class ValidationException extends Error implements CustomError {
   }
 
   static buildFromMessage(message: string) {
-    return new ValidationException({ errors: [{ keyword: DEFAULT_KEYWORD, message, params: {} }] });
+    return new ValidationException({
+      errors: [{ keyword: DEFAULT_KEYWORD, message, params: {} }],
+    });
   }
 }

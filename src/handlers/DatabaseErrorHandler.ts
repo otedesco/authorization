@@ -1,4 +1,8 @@
-import { BaseException, InternalServerError, NotNullError } from "@otedesco/commons";
+import {
+  BaseException,
+  InternalServerError,
+  NotNullError,
+} from "@otedesco/commons";
 import { LoggerFactory } from "@otedesco/server-utils";
 import { DBError, NotNullViolationError } from "objection-db-errors";
 

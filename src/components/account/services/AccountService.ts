@@ -18,9 +18,16 @@ async function sanitize(handler: Promise<Account>): Promise<SecuredAccount> {
   return _.omit(account, keysToOmit) as SecuredAccount;
 }
 
-async function validateAccount({ email, externalAuthType, externalId, password }: Partial<Account>): Promise<void> {
-  if (!externalAuthType && !password) throw new ValidationException({ status: 400 });
-  if (externalAuthType && !externalId) throw new ValidationException({ status: 400 });
+async function validateAccount({
+  email,
+  externalAuthType,
+  externalId,
+  password,
+}: Partial<Account>): Promise<void> {
+  if (!externalAuthType && !password)
+    throw new ValidationException({ status: 400 });
+  if (externalAuthType && !externalId)
+    throw new ValidationException({ status: 400 });
 
   const account = await CachedAccountRepository.findOne({ email });
   if (account) throw new ValidationException({ status: 400 });
@@ -41,23 +48,33 @@ async function mapAccountData(account: Account): Promise<Account> {
   return accountData;
 }
 
-async function findOne(account: Partial<Account | SecuredAccount | null>): Promise<SecuredAccount | null> {
+async function findOne(
+  account: Partial<Account | SecuredAccount | null>,
+): Promise<SecuredAccount | null> {
   if (!account) return null;
 
   return sanitize(CachedAccountRepository.findOne(account));
 }
 
-async function create(payload: Account, tx?: Transaction): Promise<SecuredAccount> {
+async function create(
+  payload: Account,
+  tx?: Transaction,
+): Promise<SecuredAccount> {
   await validateAccount(payload);
   const accountData = await mapAccountData(payload);
-  const account = await sanitize(CachedAccountRepository.create(accountData, tx));
+  const account = await sanitize(
+    CachedAccountRepository.create(accountData, tx),
+  );
 
   if (account) notify(AccountConfig.topic, AccountConfig.createdEvent, account);
 
   return account;
 }
 
-async function verifyAccount({ email, password }: Partial<Account>): Promise<SecuredAccount> {
+async function verifyAccount({
+  email,
+  password,
+}: Partial<Account>): Promise<SecuredAccount> {
   const account = await CachedAccountRepository.findOne({ email });
   if (!account) throw new UnauthorizedException();
 

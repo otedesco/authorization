@@ -22,6 +22,9 @@ export class PrivateAuthenticationRoute implements Route {
   }
 
   private initializeRoutes() {
-    this.router.post(`${this.path}/sign-out`, asyncHandler(AuthenticationController.signOut));
+    this.router.post(
+      `${this.path}/sign-out`,
+      asyncHandler(AuthenticationController.signOut),
+    );
   }
 }

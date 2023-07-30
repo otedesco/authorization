@@ -1,9 +1,17 @@
-name: Lint, Test and Release
+name: Release
 
 on:
   push:
     branches:
-      - "main"
+      - develop
+      - stage
+
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "The branch to build"
+        required: true
+
 jobs:
   lint-and-test:
     uses: otedesco/gh-action-templates/.github/workflows/lint-and-test.yml@main

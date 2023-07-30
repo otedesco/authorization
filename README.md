@@ -2,7 +2,7 @@
 
 Microservices architecture backend, built with Node.js and Typescript using Turborepo.
 
-![alt text](https://github.com/otedesco/apart-services/blob/main/docs/diagram.png?raw=true)
+![alt text](https://github.com/otedesco/authorization/blob/main/docs/diagram.png?raw=true)
 
 ## Folder structure
 

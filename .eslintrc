@@ -4,7 +4,8 @@
   "ignorePatterns": [
     "**/logs/**",
     "**/node_modules/",
-    "**/dist/"
+    "**/dist/",
+    "release.config.js"
   ],
   "extends": [
     "plugin:@typescript-eslint/recommended",

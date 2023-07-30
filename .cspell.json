@@ -9,6 +9,7 @@
     "eclass",
     "envalid",
     "esbuild",
+    "execa",
     "lastname",
     "lintstagedrc",
     "Millis",

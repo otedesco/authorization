@@ -7,7 +7,7 @@
   "main": "dist/index.js",
   "private": true,
   "engines": {
-    "pnpm": "8.6.10"
+    "pnpm": ">=8.6.10"
   },
   "volta": {
     "node": "18.17.0",
@@ -35,7 +35,7 @@
     "cz": "cz"
   },
   "devDependencies": {
-    "@semantic-release-plus/docker": "^3.1.2",
+    "@eclass/semantic-release-docker": "^4.0.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^10.0.1",
     "@semantic-release/exec": "^6.0.3",
@@ -59,10 +59,12 @@
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-prettier": "^8.9.0",
     "eslint-plugin-import": "^2.28.0",
+    "execa": "^5.1.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "node-gyp": "^9.4.0",
     "nodemon": "^3.0.1",
+    "npmlog": "^7.0.1",
     "prettier": "^3.0.0",
     "semantic-release": "^21.0.7",
     "supertest": "^6.3.3",

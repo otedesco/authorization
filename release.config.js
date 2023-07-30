@@ -1,19 +1,40 @@
-const { existsSync } = require("fs");
-const log = require("npmlog");
+const logs = require("npmlog");
+const { sync } = require("execa");
 
 const plugins = [];
-
-const { GITHUB_REPOSITORY } = process.env;
-const [owner, repo] = String(GITHUB_REPOSITORY).toLowerCase().split("/");
 const noteKeywords = ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"];
+const { GITHUB_SHA, GITHUB_REPOSITORY, GIT_AUTHOR_NAME, GIT_AUTHOR_EMAIL } = process.env;
+
+const successCmd = `
+echo 'RELEASE_TAG=v\${nextRelease.version}' >> $GITHUB_ENV
+echo 'RELEASE_VERSION=\${nextRelease.version}' >> $GITHUB_ENV
+echo '::set-output name=release-tag::v\${nextRelease.version}'
+echo '::set-output name=release-version::\${nextRelease.version}'
+`;
+
+const [owner, repo] = String(GITHUB_REPOSITORY).toLowerCase().split("/");
 
 const addPlugin = (plugin, options) => {
-  log.info(`${plugin} enabled ${options && "with options:"}`);
-  options && log.info(null, options);
+  logs.info(`${plugin} enabled ${options && "with options:"}`);
+  options && logs.info(null, options);
   return plugins.push([plugin, options]);
 };
 
-log.info(`Executing semantic-release config setup`);
+logs.info(`Executing semantic-release config setup`);
+
+try {
+  const { stdout: authorName } = sync("git", ["log", "-1", "--pretty=format:%an", GITHUB_SHA]);
+  const { stdout: authorEmail } = sync("git", ["log", "-1", "--pretty=format:%ae", GITHUB_SHA]);
+  authorName && !GIT_AUTHOR_NAME && (process.env.GIT_AUTHOR_NAME = `${authorName}`);
+  authorEmail && !GIT_AUTHOR_EMAIL && (process.env.GIT_AUTHOR_EMAIL = `${authorEmail}`);
+} catch (e) {
+  logs.error(`Unable to set GIT_COMMITTER_NAME and GIT_COMMITTER_EMAIL`, e);
+}
+
+addPlugin("@semantic-release/exec", {
+  successCmd,
+  prepareCmd: `docker build . -t ${owner}/${repo} --target prod-server --build-arg NPM_TOKEN=$NPM_TOKEN`,
+});
 
 addPlugin("@semantic-release/commit-analyzer", {
   preset: "conventionalcommits",
@@ -74,6 +95,18 @@ addPlugin("@semantic-release/npm", {
   tarballDir: "pack",
 });
 
+addPlugin("@eclass/semantic-release-docker", {
+  baseImageName: `${owner}/${repo}`,
+  registries: [
+    {
+      url: "ghcr.io",
+      imageName: `ghcr.io/${owner}/${repo}`,
+      user: "DOCKER_USERNAME",
+      password: "DOCKER_PASSWORD",
+    },
+  ],
+});
+
 addPlugin("@semantic-release/git", {
   assets: ["docs/CHANGELOG.md", "package.json", "pnpm-lock.yaml", "docs/diagram.svg"],
   message: `chore(<%= nextRelease.type %>): release <%= nextRelease.version %> <%= nextRelease.channel !== null ? \`on \${nextRelease.channel} channel \` : '' %>[skip ci]\n\n<%= nextRelease.notes %>`,
@@ -89,91 +122,25 @@ addPlugin("@semantic-release/github", {
   ],
 });
 
-const dockerExists = existsSync("./Dockerfile");
-if (dockerExists) {
-  addPlugin("@eclass/semantic-release-docker", {
-    baseImageName: `${owner}/${repo}`,
-    registries: [
-      {
-        url: "ghcr.io",
-        imageName: `ghcr.io/${owner}/${repo}`,
-        user: "GITHUB_REPOSITORY_OWNER",
-        password: "GITHUB_TOKEN",
-      },
-    ],
-  });
-}
-
-if (process.env.GITHUB_ACTIONS !== undefined) {
-  addPlugin("@semantic-release/exec", {
-    prepareCmd: `docker build . -t ghcr.io/${owner}/${repo} --target prod-server --build-arg NPM_TOKEN=$NPM_TOKEN`,
-  });
-}
-
 module.exports = {
   branches: [
+    // maintenance releases
+    "+([0-9])?(.{+([0-9]),x}).x",
+
     // release channels
     "main",
-    // "next",
-    // "next-major",
 
-    // // pre-releases
-    // {
-    //   name: "stage",
-    //   prerelease: true,
-    // },
-    // {
-    //   name: "develop",
-    //   prerelease: true,
-    // },
+    // pre-releases
+    {
+      name: "stage",
+      prerelease: true,
+    },
+    {
+      name: "develop",
+      prerelease: true,
+    },
   ],
+  repositoryUrl: "https://github.com/otedesco/authorization.git",
+
   plugins,
 };
-
-// {
-//   "branches": [
-//     "main"
-//   ],
-//   "repositoryUrl": "https://github.com/otedesco/authorization.git",
-//   "plugins": [
-//     "@semantic-release/commit-analyzer",
-//     "@semantic-release/release-notes-generator",
-//     [
-//       "@semantic-release/changelog",
-//       {
-//         "changelogFile": "./docs/CHANGELOG.md"
-//       }
-//     ],
-//     "@semantic-release/npm",
-//     [
-//       "@semantic-release/exec",
-//       {
-//         "prepareCmd": "docker build . -t otedesco/authorization --target prod-server --build-arg NPM_TOKEN=$NPM_TOKEN"
-//       }
-//     ],
-//     [
-//       "@semantic-release-plus/docker",
-//       {
-//         "name": "otedesco/authorization:latest",
-//         "registry": "ghcr.io"
-//       }
-//     ],
-//     [
-//       "@semantic-release/git",
-//       {
-//         "assets": [
-//           "./docs/CHANGELOG.md",
-//           "./package.json"
-//         ],
-//         "message": "release(version): Release authorization service ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-//       }
-//     ],
-//     [
-//       "@semantic-release/github",
-//       {
-//         "successComment": false,
-//         "failTitle": false
-//       }
-//     ]
-//   ]
-// }

@@ -130,12 +130,6 @@ Shutdown all the infrastructure required for ```services/auth``` including the a
   pnpm run down:local:auth
 ```
 
-Build docker container for ```services/auth```
-
-```bash
-  pnpm run docker:build:auth
-```
-
 Runs every project clean script if it is defined, used to delete ```dist``` and ```node_modules``` folders
 
 ```bash

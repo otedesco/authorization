@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.2.0-stage.1](https://github.com/otedesco/authorization/compare/v1.1.1...v1.2.0-stage.1) (2023-07-30)
+
+
+### 📝 Documentation
+
+* **readme:** fix diagram link ([9d2876e](https://github.com/otedesco/authorization/commit/9d2876e35169f0811e20e774b4bb4f88b840e7b3))
+
 ## [1.1.1](https://github.com/otedesco/authorization/compare/v1.1.0...v1.1.1) (2023-07-30)
 
 

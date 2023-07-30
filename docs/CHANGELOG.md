@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.1.1](https://github.com/otedesco/authorization/compare/v1.1.0...v1.1.1) (2023-07-30)
+
+
+### 🔁 Continuous Integration
+
+* **githubactions:** change release process ([d85b960](https://github.com/otedesco/authorization/commit/d85b960ebe57cb2e050d997f8585cedd8b0bcbb8))
+
 ## [1.1.0](https://github.com/otedesco/authorization/compare/v1.0.0...v1.1.0) (2023-07-30)
 
 

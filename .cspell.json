@@ -1,15 +1,18 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "language": "en",
   "words": [
     "autofixable",
     "BACKOFF",
+    "conventionalcommits",
     "degit",
+    "eclass",
     "envalid",
     "esbuild",
     "lastname",
     "lintstagedrc",
     "Millis",
+    "npmlog",
     "octocat",
     "ossp",
     "otedesco",
@@ -23,7 +26,7 @@
   "ignorePaths": [
     "package.json",
     "package-lock.json",
-    "yarn.lock",
+    "pnpm-lock.yaml",
     "tsconfig.json",
     "node_modules/**"
   ]

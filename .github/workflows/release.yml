@@ -1,9 +1,7 @@
 name: Lint, Test and Release
 
-on:
-  push:
-    branches:
-      - "main"
+on: workflow_dispatch
+
 jobs:
   lint-and-test:
     uses: otedesco/gh-action-templates/.github/workflows/lint-and-test.yml@main

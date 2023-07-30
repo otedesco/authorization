@@ -1,15 +1,15 @@
-import { CustomError } from '@otedesco/commons';
-import { LoggerFactory } from '@otedesco/server-utils';
-import { NextFunction, Request, Response } from 'express';
-import _ from 'lodash';
+import { CustomError } from "@otedesco/commons";
+import { LoggerFactory } from "@otedesco/server-utils";
+import { NextFunction, Request, Response } from "express";
+import _ from "lodash";
 
-import { DatabaseErrorHandler } from '../handlers/DatabaseErrorHandler';
+import { DatabaseErrorHandler } from "../handlers/DatabaseErrorHandler";
 
 const { logger } = LoggerFactory.getInstance(__filename);
 
 export function logError(err: CustomError, _req: Request, _res: Response, next: NextFunction) {
   logger.error(err);
-  
+
   return next(err);
 }
 

@@ -1,6 +1,6 @@
-import { BaseException, InternalServerError, NotNullError } from '@otedesco/commons';
-import { LoggerFactory } from '@otedesco/server-utils';
-import { DBError, NotNullViolationError } from 'objection-db-errors';
+import { BaseException, InternalServerError, NotNullError } from "@otedesco/commons";
+import { LoggerFactory } from "@otedesco/server-utils";
+import { DBError, NotNullViolationError } from "objection-db-errors";
 
 const { logger } = LoggerFactory.getInstance(__filename);
 

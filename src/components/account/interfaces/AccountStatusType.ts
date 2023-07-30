@@ -1,4 +1,4 @@
-import { AccountStatusEnum } from '@enums/AccountStatusEnum';
+import { AccountStatusEnum } from "@enums/AccountStatusEnum";
 
 export interface AccountStatusType {
   id: number;

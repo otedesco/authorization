@@ -1,8 +1,8 @@
-import { LoggerFactory } from '@otedesco/server-utils';
-import Knex from 'knex';
-import { knexSnakeCaseMappers } from 'objection';
+import { LoggerFactory } from "@otedesco/server-utils";
+import Knex from "knex";
+import { knexSnakeCaseMappers } from "objection";
 
-import { DEBUG, CONNECTION_POOL_SIZE, CONNECTION, CONNECTION_KEEP_ALIVE_TIMEOUT } from '../configs/DBConfig';
+import { DEBUG, CONNECTION_POOL_SIZE, CONNECTION, CONNECTION_KEEP_ALIVE_TIMEOUT } from "../configs/DBConfig";
 
 const { logger } = LoggerFactory.getInstance(__dirname);
 
@@ -16,7 +16,7 @@ const afterCreate = (conn: any, done: any) => {
 };
 
 export const dbConnection = {
-  client: 'pg',
+  client: "pg",
   connection: CONNECTION,
   pool: {
     afterCreate,
@@ -37,10 +37,10 @@ const Db = Knex(dbConnection);
 
 export const testDBConnection = async () => {
   try {
-    await Db.raw('SELECT 1');
-    logger.info('DB is connected successfully');
+    await Db.raw("SELECT 1");
+    logger.info("DB is connected successfully");
   } catch (err) {
-    logger.error('DB is not connected');
+    logger.error("DB is not connected");
     throw err;
   }
 };

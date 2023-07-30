@@ -1,4 +1,4 @@
-import { Profile } from '@components/profile/interfaces/Profile';
+import { Profile } from "@components/profile/interfaces/Profile";
 
 export interface Organization {
   id: string;

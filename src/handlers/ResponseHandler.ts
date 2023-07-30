@@ -1,5 +1,5 @@
-import { BaseException, ResourceNotFoundError } from '@otedesco/commons';
-import _ from 'lodash';
+import { BaseException, ResourceNotFoundError } from "@otedesco/commons";
+import _ from "lodash";
 
 const buildResponse = <T>(status: number, data: T): { status: number; data: T } => ({ status, data });
 

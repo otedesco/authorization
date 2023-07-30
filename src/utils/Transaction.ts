@@ -1,6 +1,6 @@
-import Objection, { transaction } from 'objection';
+import Objection, { transaction } from "objection";
 
-import Db from '../database';
+import Db from "../database";
 
 export class Transaction {
   private static knex = Db;

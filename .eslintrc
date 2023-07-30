@@ -8,7 +8,8 @@
   ],
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "airbnb-typescript/base"
+    "airbnb-typescript/base",
+    "prettier"
   ],
   "plugins": [
     "import"
@@ -29,13 +30,6 @@
       120
     ],
     "newline-before-return": "error",
-    "arrow-parens": [
-      2,
-      "as-needed",
-      {
-        "requireForBlockBody": true
-      }
-    ],
     "@typescript-eslint/explicit-member-accessibility": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-parameter-properties": 0,

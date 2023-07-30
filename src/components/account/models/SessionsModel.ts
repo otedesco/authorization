@@ -1,16 +1,15 @@
-import { ACCOUNT_TABLE } from '@configs/DBConfig';
-import { BaseModel, ModelObject } from '@otedesco/commons';
+import { ACCOUNT_TABLE } from "@configs/DBConfig";
+import { BaseModel, ModelObject } from "@otedesco/commons";
 
+import { Account } from "../interfaces/Account";
+import { Session } from "../interfaces/Session";
 
-import { Account } from '../interfaces/Account';
-import { Session } from '../interfaces/Session';
-
-import { Accounts } from './AccountModel';
+import { Accounts } from "./AccountModel";
 
 export class Sessions extends BaseModel implements Session {
   id!: string;
 
-  account?: Account['id'] | Account;
+  account?: Account["id"] | Account;
 
   createdAt: Date;
 

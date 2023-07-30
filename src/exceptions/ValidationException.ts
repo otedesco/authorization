@@ -1,13 +1,13 @@
-import { CustomError, ValidationError } from '@otedesco/commons';
-import _ from 'lodash';
+import { CustomError, ValidationError } from "@otedesco/commons";
+import _ from "lodash";
 
-const DEFAULT_KEYWORD = 'error';
+const DEFAULT_KEYWORD = "error";
 
 const createFromDataPath = (error: any) => {
   const { message, data, instancePath, params = {} } = error;
   const { allowedValues } = params;
 
-  const key = instancePath.replace('/', '');
+  const key = instancePath.replace("/", "");
   let messageWithKey = `${key}: ${message}`;
 
   if (!_.isEmpty(allowedValues)) {
@@ -19,7 +19,7 @@ const createFromDataPath = (error: any) => {
 
 // FIXME: Explicit any
 const createFromKeyword = ({ params, message }: any) => {
-  const messageWithKey = Object.values(params).reduce((msg, value) => `${msg}${value}: ${message};`, '');
+  const messageWithKey = Object.values(params).reduce((msg, value) => `${msg}${value}: ${message};`, "");
 
   return { message: messageWithKey, data: {} };
 };
@@ -28,7 +28,7 @@ const mapErrors = (errors: any[], code: string) =>
   errors.reduce((arrayResult, error) => {
     const { instancePath } = error;
 
-    const errorObj = !instancePath || instancePath === '' ? createFromKeyword(error) : createFromDataPath(error);
+    const errorObj = !instancePath || instancePath === "" ? createFromKeyword(error) : createFromDataPath(error);
 
     return [...arrayResult, { code, ...errorObj }];
   }, []);

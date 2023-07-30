@@ -1,0 +1,47 @@
+{
+  "branches": [
+    "main"
+  ],
+  "repositoryUrl": "https://github.com/otedesco/authorization.git",
+  "extends": "semantic-release-npm-github-publish",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "./CHANGELOG.md"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "docker build . -t otedesco/authorization --target prod-server --build-arg NPM_TOKEN=$NPM_TOKEN"
+      }
+    ],
+    [
+      "@semantic-release-plus/docker",
+      {
+        "name": "otedesco/authorization:latest",
+        "registry": "ghcr.io"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "./CHANGELOG.md",
+          "./package.json"
+        ],
+        "message": "release(version): Release authorization service docker image ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "successComment": false,
+        "failTitle": false
+      }
+    ]
+  ]
+}

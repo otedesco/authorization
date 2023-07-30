@@ -1,0 +1,30 @@
+{
+  "version": "0.1",
+  "language": "en",
+  "words": [
+    "autofixable",
+    "BACKOFF",
+    "degit",
+    "envalid",
+    "esbuild",
+    "lastname",
+    "lintstagedrc",
+    "Millis",
+    "octocat",
+    "ossp",
+    "otedesco",
+    "rmrf",
+    "server-utils",
+    "socio",
+    "tsup",
+    "Turborepo"
+  ],
+  "flagWords": [],
+  "ignorePaths": [
+    "package.json",
+    "package-lock.json",
+    "yarn.lock",
+    "tsconfig.json",
+    "node_modules/**"
+  ]
+}

@@ -1,4 +1,4 @@
 export enum ProfileTypeEnum {
-  INDIVIDUAL = 'individual',
-  COLLABORATOR = 'collaborator',
+  INDIVIDUAL = "individual",
+  COLLABORATOR = "collaborator",
 }

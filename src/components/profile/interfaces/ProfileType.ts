@@ -1,4 +1,4 @@
-import { ProfileTypeEnum } from '@enums/ProfileTypesEnum';
+import { ProfileTypeEnum } from "@enums/ProfileTypesEnum";
 
 export interface ProfileType {
   id: number;

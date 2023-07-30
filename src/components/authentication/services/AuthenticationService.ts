@@ -1,22 +1,21 @@
+import { Account, SecuredAccount } from "@components/account/interfaces/Account";
+import AccountService from "@components/account/services/AccountService";
+import ProfileService from "@components/profile/services/ProfileService";
+import { REFRESH_PUBLIC_KEY, REFRESH_SECRET_KEY, SECRET_KEY, SESSION_EXPIRE, TOKEN_EXPIRE } from "@configs/AppConfig";
+import { UnauthorizedException } from "@exceptions/UnauthorizedException";
+import { sign, verify } from "@otedesco/commons";
+import { Transaction as Transactional } from "@utils/Transaction";
+import _ from "lodash";
+import { Transaction } from "objection";
 
-import { Account, SecuredAccount } from '@components/account/interfaces/Account';
-import AccountService from '@components/account/services/AccountService';
-import ProfileService from '@components/profile/services/ProfileService';
-import { REFRESH_PUBLIC_KEY, REFRESH_SECRET_KEY, SECRET_KEY, SESSION_EXPIRE, TOKEN_EXPIRE } from '@configs/AppConfig';
-import { UnauthorizedException } from '@exceptions/UnauthorizedException';
-import { sign, verify } from '@otedesco/commons';
-import { Transaction as Transactional } from '@utils/Transaction';
-import _ from 'lodash';
-import { Transaction } from 'objection';
+import { SignIn } from "../interfaces/SignIn";
+import { SignUp } from "../interfaces/SignUp";
 
-import { SignIn } from '../interfaces/SignIn';
-import { SignUp } from '../interfaces/SignUp';
-
-const tokenSub: keyof Account = 'email';
+const tokenSub: keyof Account = "email";
 
 function transactionalCreate(payload: SignUp, returning = false) {
-  const accountToCreate = _.omit(payload, ['passwordConfirmation', 'name', 'lastName']);
-  const profileToCreate = _.pick(payload, ['name', 'lastName']);
+  const accountToCreate = _.omit(payload, ["passwordConfirmation", "name", "lastName"]);
+  const profileToCreate = _.pick(payload, ["name", "lastName"]);
 
   return async (tx: Transaction) => {
     const account = await AccountService.create(accountToCreate, tx);

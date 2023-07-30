@@ -1,15 +1,14 @@
-import { SESSION_EXPIRE } from '@configs/AppConfig';
-import { Cache } from '@otedesco/cache';
-import { Transaction } from 'objection';
+import { SESSION_EXPIRE } from "@configs/AppConfig";
+import { Cache } from "@otedesco/cache";
+import { Transaction } from "objection";
 
+import { Account } from "../interfaces/Account";
+import { Accounts } from "../models/AccountModel";
 
-import { Account } from '../interfaces/Account';
-import { Accounts } from '../models/AccountModel';
-
-import AccountRepository from './AccountRepository';
+import AccountRepository from "./AccountRepository";
 
 const ENABLED_CACHE = true;
-const idColumns = ['email'];
+const idColumns = ["email"];
 
 async function findOne(argsObject: Partial<Account>) {
   return Cache.cacheSimpleResponse(
@@ -28,7 +27,7 @@ async function create(argsObject: Partial<Account>, tx?: Transaction) {
     Accounts.tableName,
     SESSION_EXPIRE,
     false,
-    args => AccountRepository.create(args, tx),
+    (args) => AccountRepository.create(args, tx),
     argsObject,
   );
 }

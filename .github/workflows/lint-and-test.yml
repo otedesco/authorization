@@ -1,0 +1,15 @@
+name: Lint And Test
+on:
+  push:
+    branches:
+      - "*"
+      - "!main"
+  pull_request:
+    branches:
+      - "*"
+  workflow_call:
+
+jobs:
+  lint-and-test:
+    uses: otedesco/gh-action-templates/.github/workflows/lint-and-test.yml@main
+    secrets: inherit

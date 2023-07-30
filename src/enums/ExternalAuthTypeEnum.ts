@@ -1,4 +1,4 @@
 export enum ExternalAuthTypeEnum {
-  GOOGLE = 'Google',
-  FACEBOOK = 'Facebook',
+  GOOGLE = "Google",
+  FACEBOOK = "Facebook",
 }

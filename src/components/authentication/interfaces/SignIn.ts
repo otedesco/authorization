@@ -1,3 +1,3 @@
-import { Account } from '../../account/interfaces/Account';
+import { Account } from "../../account/interfaces/Account";
 
-export type SignIn = Pick<Account, 'email' | 'password'>;
+export type SignIn = Pick<Account, "email" | "password">;

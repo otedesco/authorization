@@ -1,4 +1,4 @@
-import { InternalServerError, CustomError } from '@otedesco/commons';
+import { InternalServerError, CustomError } from "@otedesco/commons";
 
 export class InternalServerException extends Error implements CustomError {
   public status: number;

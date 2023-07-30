@@ -1,11 +1,10 @@
-import { validateIncomingData } from '@middlewares/index';
-import { Route } from '@otedesco/server-utils';
-import { Router } from 'express';
-import asyncHandler from 'express-async-handler';
+import { validateIncomingData } from "@middlewares/index";
+import { Route } from "@otedesco/server-utils";
+import { Router } from "express";
+import asyncHandler from "express-async-handler";
 
-
-import AuthenticationController from '../controllers/AuthenticationController';
-import { signIn, signUp } from '../validators/AuthenticationValidator';
+import AuthenticationController from "../controllers/AuthenticationController";
+import { signIn, signUp } from "../validators/AuthenticationValidator";
 
 export class AuthenticationRoute implements Route {
   public path: string;
@@ -13,7 +12,7 @@ export class AuthenticationRoute implements Route {
   public router: Router;
 
   constructor() {
-    this.path = '/auth';
+    this.path = "/auth";
     this.router = Router();
 
     this.initializeRoutes();

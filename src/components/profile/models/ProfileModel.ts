@@ -1,17 +1,16 @@
+import { Account } from "@components/account/interfaces/Account";
+import { Accounts } from "@components/account/models/AccountModel";
+import { Organization } from "@components/organization/interfaces/Organization";
+import { Organizations } from "@components/organization/models/OrganizationModel";
+import { PROFILE_TABLE } from "@configs/DBConfig";
+import { BaseModel, ModelObject } from "@otedesco/commons";
 
-import { Account } from '@components/account/interfaces/Account';
-import { Accounts } from '@components/account/models/AccountModel';
-import { Organization } from '@components/organization/interfaces/Organization';
-import { Organizations } from '@components/organization/models/OrganizationModel';
-import { PROFILE_TABLE } from '@configs/DBConfig';
-import { BaseModel, ModelObject } from '@otedesco/commons';
+import { Profile } from "../interfaces/Profile";
+import { ProfileType } from "../interfaces/ProfileType";
+import { RoleType } from "../interfaces/RoleType";
 
-import { Profile } from '../interfaces/Profile';
-import { ProfileType } from '../interfaces/ProfileType';
-import { RoleType } from '../interfaces/RoleType';
-
-import { ProfileTypes } from './ProfileTypeModel';
-import { RoleTypes } from './RoleTypeModel';
+import { ProfileTypes } from "./ProfileTypeModel";
+import { RoleTypes } from "./RoleTypeModel";
 
 export default class Profiles extends BaseModel implements Profile {
   id!: string;
@@ -22,13 +21,13 @@ export default class Profiles extends BaseModel implements Profile {
 
   avatarUrl?: string;
 
-  role: RoleType['role'] | RoleType;
+  role: RoleType["role"] | RoleType;
 
-  type: ProfileType['type'] | ProfileType;
+  type: ProfileType["type"] | ProfileType;
 
-  organization?: Organization['id'] | Organization;
+  organization?: Organization["id"] | Organization;
 
-  account: Account['id'] | Account;
+  account: Account["id"] | Account;
 
   createdAt: Date;
 

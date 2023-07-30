@@ -1,19 +1,18 @@
+import { SALT_ROUNDS } from "@configs/AppConfig";
+import { AccountConfig } from "@configs/KafkaConfig";
+import { AccountStatusEnum } from "@enums/AccountStatusEnum";
+import { UnauthorizedException } from "@exceptions/UnauthorizedException";
+import { ValidationException } from "@exceptions/ValidationException";
+import { generateHash, compareWithHash } from "@otedesco/commons";
+import { notify } from "@otedesco/notify";
+import _ from "lodash";
+import { Transaction } from "objection";
 
-import { SALT_ROUNDS } from '@configs/AppConfig';
-import { AccountConfig } from '@configs/KafkaConfig';
-import { AccountStatusEnum } from '@enums/AccountStatusEnum';
-import { UnauthorizedException } from '@exceptions/UnauthorizedException';
-import { ValidationException } from '@exceptions/ValidationException';
-import { generateHash, compareWithHash } from '@otedesco/commons';
-import { notify } from '@otedesco/notify';
-import _ from 'lodash';
-import { Transaction } from 'objection';
-
-import { Account, SecuredAccount } from '../interfaces/Account';
-import CachedAccountRepository from '../repositories/CachedAccountRepository';
+import { Account, SecuredAccount } from "../interfaces/Account";
+import CachedAccountRepository from "../repositories/CachedAccountRepository";
 
 async function sanitize(handler: Promise<Account>): Promise<SecuredAccount> {
-  const keysToOmit = ['password', 'salt'];
+  const keysToOmit = ["password", "salt"];
   const account = await handler;
 
   return _.omit(account, keysToOmit) as SecuredAccount;

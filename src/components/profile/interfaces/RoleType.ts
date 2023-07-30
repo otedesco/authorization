@@ -1,4 +1,4 @@
-import { RoleTypeEnum } from '@enums/RoleTypeEnum';
+import { RoleTypeEnum } from "@enums/RoleTypeEnum";
 
 export interface RoleType {
   id: number;

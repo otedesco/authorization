@@ -1,4 +1,4 @@
-import { ForbiddenError, CustomError } from '@otedesco/commons';
+import { ForbiddenError, CustomError } from "@otedesco/commons";
 
 export class ForbiddenException extends Error implements CustomError {
   public status: number;

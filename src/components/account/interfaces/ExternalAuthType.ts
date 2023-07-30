@@ -1,4 +1,4 @@
-import { ExternalAuthTypeEnum } from '@enums/ExternalAuthTypeEnum';
+import { ExternalAuthTypeEnum } from "@enums/ExternalAuthTypeEnum";
 
 export interface ExternalAuthType {
   type: ExternalAuthTypeEnum;

@@ -1,10 +1,9 @@
-import { deserializeAccount, isPrivate } from '@middlewares/index';
-import { Route } from '@otedesco/server-utils';
-import { Router } from 'express';
-import asyncHandler from 'express-async-handler';
+import { deserializeAccount, isPrivate } from "@middlewares/index";
+import { Route } from "@otedesco/server-utils";
+import { Router } from "express";
+import asyncHandler from "express-async-handler";
 
-
-import AuthenticationController from '../controllers/AuthenticationController';
+import AuthenticationController from "../controllers/AuthenticationController";
 
 export class PrivateAuthenticationRoute implements Route {
   public path: string;
@@ -12,7 +11,7 @@ export class PrivateAuthenticationRoute implements Route {
   public router: Router;
 
   constructor() {
-    this.path = '/auth';
+    this.path = "/auth";
     this.router = Router();
     this.initializeMiddlewares();
     this.initializeRoutes();

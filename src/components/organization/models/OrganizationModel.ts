@@ -1,10 +1,9 @@
+import { Profile } from "@components/profile/interfaces/Profile";
+import Profiles from "@components/profile/models/ProfileModel";
+import { ORGANIZATION_TABLE } from "@configs/DBConfig";
+import { BaseModel } from "@otedesco/commons";
 
-import { Profile } from '@components/profile/interfaces/Profile';
-import Profiles from '@components/profile/models/ProfileModel';
-import { ORGANIZATION_TABLE } from '@configs/DBConfig';
-import { BaseModel } from '@otedesco/commons';
-
-import { Organization } from '../interfaces/Organization';
+import { Organization } from "../interfaces/Organization";
 
 export class Organizations extends BaseModel implements Organization {
   id: string;

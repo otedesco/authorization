@@ -1,11 +1,11 @@
 const base = {
-  status: { type: 'string' },
-  id: { type: 'integer', minimum: 1 },
+  status: { type: "string" },
+  id: { type: "integer", minimum: 1 },
 };
 
 export const modelSchema = {
-  type: 'object',
+  type: "object",
   additionalProperties: false,
-  required: ['status'],
+  required: ["status"],
   properties: base,
 };

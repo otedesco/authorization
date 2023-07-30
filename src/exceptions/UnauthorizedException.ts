@@ -1,4 +1,4 @@
-import { UnauthorizedError, CustomError } from '@otedesco/commons';
+import { UnauthorizedError, CustomError } from "@otedesco/commons";
 
 export class UnauthorizedException extends Error implements CustomError {
   public status: number;

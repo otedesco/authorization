@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.2.0-develop.2](https://github.com/otedesco/authorization/compare/v1.2.0-develop.1...v1.2.0-develop.2) (2023-07-31)
+
+
+### 📝 Documentation
+
+* **readme:** change lint command docs ([#2](https://github.com/otedesco/authorization/issues/2)) ([957ea80](https://github.com/otedesco/authorization/commit/957ea809ca6a0379b33ca10d7e1b448310ee633f))
+
+
+### 🔁 Continuous Integration
+
+* **gha:** change pull request trigger for tests ([6684740](https://github.com/otedesco/authorization/commit/6684740af4b1f2319d32176039f2a568233d7199))
+
 ## [1.2.0-develop.1](https://github.com/otedesco/authorization/compare/v1.1.1...v1.2.0-develop.1) (2023-07-31)
 
 

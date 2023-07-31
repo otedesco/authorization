@@ -97,7 +97,7 @@ Run every service builded with the ```start``` script defined
 Run linter for every project
 
 ```bash
-  pnpm run lint
+  pnpm run lint:check
 ```
 
 Fix all autofixable linter errors for every project

@@ -5,12 +5,7 @@ on:
     branches:
       - develop
       - stage
-
   workflow_dispatch:
-    inputs:
-      branch:
-        description: "The branch to build"
-        required: true
 
 jobs:
   lint-and-test:

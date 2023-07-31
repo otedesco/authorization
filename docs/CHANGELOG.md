@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.2.0-develop.1](https://github.com/otedesco/authorization/compare/v1.1.1...v1.2.0-develop.1) (2023-07-31)
+
+
+### 📝 Documentation
+
+* **readme:** fix diagram link ([9d2876e](https://github.com/otedesco/authorization/commit/9d2876e35169f0811e20e774b4bb4f88b840e7b3))
+
+
+### 🔁 Continuous Integration
+
+* **gha:** change workflow dispatch parameters ([7b5b4a5](https://github.com/otedesco/authorization/commit/7b5b4a51aeb231e876c89e4fcd84400ba8f9a5e7))
+
 ## [1.2.0-stage.1](https://github.com/otedesco/authorization/compare/v1.1.1...v1.2.0-stage.1) (2023-07-30)
 
 

@@ -1,6 +1,6 @@
 # Apart microservices backend monorepo
 
-Microservices architecture backend, built with Node.js and Typescript using Turborepo.
+Microservices architecture backend, built with Node.js and Typescript using Turbore
 
 ![alt text](https://github.com/otedesco/authorization/blob/main/docs/diagram.png?raw=true)
 
